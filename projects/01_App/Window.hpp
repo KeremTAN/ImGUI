@@ -11,9 +11,11 @@ public:
 		const sf::String& title);
 	void draw(sf::Drawable& shape);
 	void processEvent();
+	void close();
 	bool isOpen();
 	void clearScreen();
 	void showShape();
+	void update(const sf::Time& dt);
 	void addKeyPressFunc(KeyboardFunction newFunction);
 	void addKeyReleaseFunc(KeyboardFunction newFunction);
 	void addMouseMoveFunc(MouseMove newFunction);

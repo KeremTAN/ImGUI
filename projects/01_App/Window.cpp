@@ -1,4 +1,6 @@
 #include "Window.hpp"
+#include "imgui.h"
+#include <imgui-SFML.h>
 
 Window::Window()
 {
@@ -6,7 +8,8 @@ Window::Window()
 
 void Window::createWindow(const unsigned int& width, const unsigned int& height, const sf::String& title) {
 	window.create(sf::VideoMode(width, height), title);
-	window.setPosition({ 5,5 });
+	ImGui::SFML::Init(window);
+	//window.setPosition({ 5,5 });
 }
 
 void Window::draw(sf::Drawable& shape)
@@ -18,6 +21,7 @@ void Window::processEvent() {
 	sf::Event check;
 	while (window.pollEvent(check))
 	{
+		ImGui::SFML::ProcessEvent(check);
 		if (check.type == sf::Event::Closed)
 			window.close();
 		if (check.type == sf::Event::KeyPressed)
@@ -32,6 +36,15 @@ void Window::processEvent() {
 	}
 }
 
+void Window::close()
+{
+	if(window.isOpen())
+		window.close();
+
+	ImGui::SFML::Shutdown();
+
+}
+
 bool Window::isOpen()
 {
 	return window.isOpen();
@@ -44,7 +57,13 @@ void Window::clearScreen()
 
 void Window::showShape()
 {
+	ImGui::SFML::Render(window);
 	window.display();
+}
+
+void Window::update(const sf::Time& dt)
+{
+	ImGui::SFML::Update(window, dt);
 }
 
 void Window::addKeyPressFunc(KeyboardFunction newFunction)

@@ -1,6 +1,8 @@
 #include"Application.hpp"
 #include<iostream>
 #include"DrawableShapes.hpp"
+#include "imgui.h"
+#include <imgui-SFML.h>
 
 
 Application::Application()
@@ -10,8 +12,8 @@ Application::Application()
 
 void Application::built(const int& width, const int& height)
 {
-	m_window.createWindow(width, height, "Snake Game");
-	m_grid.set(900, 20);
+	m_window.createWindow(width, height, "SFML");
+	m_grid.set(width, 20);
 	m_window.addMouseMoveFunc(
 		std::bind(&Application::mouseMoved, this, std::placeholders::_1)
 	);
@@ -49,6 +51,7 @@ void Application::start(int fps)
 			sf::sleep(m_passingTime - m_timeOfFrame);
 		}
 	}
+	m_window.close();
 }
 
 void Application::createFrame()
@@ -59,14 +62,22 @@ void Application::createFrame()
 
 void Application::draw()
 {
+	float x = 0.0f;
 	m_window.clearScreen();
 	m_grid.draw(m_window);
+	ImGui::Begin("First Panel");
+	ImGui::Text("Hello");
+	if (ImGui::Button("Click Me")) {
+		///
+	}
+	ImGui::SliderFloat(" : X", &x, -10, 10);
+	ImGui::End();
 	m_window.showShape();
 }
 
 void Application::stageUpdate()
 {
-	
+	m_window.update(m_timeOfFrame);
 }
 
 void Application::keyPressed(sf::Keyboard::Key key)

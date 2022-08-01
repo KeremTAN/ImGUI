@@ -3,7 +3,7 @@
 
 int main() {
 	Application app;
-	app.built(1900, 1000);
+	app.built(900, 800);
 	app.start(60);
 
 }
