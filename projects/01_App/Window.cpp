@@ -22,17 +22,25 @@ void Window::processEvent() {
 	while (window.pollEvent(check))
 	{
 		ImGui::SFML::ProcessEvent(check);
+
 		if (check.type == sf::Event::Closed)
 			window.close();
+
 		if (check.type == sf::Event::KeyPressed)
 			for (const auto& keyFuncs : m_keyPressFuncList)
 				keyFuncs(check.key.code);
+
 		if (check.type == sf::Event::KeyReleased)
 			for (const auto& keyFuncs : m_keyReleaseFuncList)
 				keyFuncs(check.key.code);
+
 		if (check.type == sf::Event::MouseMoved)
 			for (const auto& mouseFuncs : m_mouseMoveFuncList)
 				mouseFuncs(check.mouseMove);
+
+		if (check.type == sf::Event::MouseButtonReleased)
+			for (const auto& mouseFuncs : m_mouseReleasedFuncList)
+				mouseFuncs(check.mouseButton);
 	}
 }
 
@@ -84,6 +92,11 @@ void Window::addMouseMoveFunc(MouseMove newFunction)
 void Window::addMouseClickedFunc(MouseClick newFunction)
 {
 	m_mouseClickFuncList.push_back(newFunction);
+}
+
+void Window::addMouseReleasedFunc(MouseClick newFunction)
+{
+	m_mouseReleasedFuncList.push_back(newFunction);
 }
 
 void Window::setTitle(const int& score)

@@ -35,3 +35,11 @@ void Grid::draw(Window& window)
 	}
 }
 
+void Grid::start()
+{
+}
+
+void Grid::update(const sf::Time& dt)
+{
+}
+

@@ -6,6 +6,8 @@ public:
 	Grid();
 	void set(const float& length, const float& space);
 	virtual void draw(Window& window) override;
+	virtual void start() override;
+	virtual void update(const sf::Time& dt) override;
 private:
 	float				m_space;
 	float				m_length;

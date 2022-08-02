@@ -33,6 +33,7 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Stage.hpp" />
     <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +47,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

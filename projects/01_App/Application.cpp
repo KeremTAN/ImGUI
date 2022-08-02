@@ -13,15 +13,23 @@ Application::Application()
 void Application::built(const int& width, const int& height)
 {
 	m_window.createWindow(width, height, "SFML");
+	m_stage.start();
+	m_grid.start();
 	m_grid.set(width, 20);
+
 	m_window.addMouseMoveFunc(
 		std::bind(&Application::mouseMoved, this, std::placeholders::_1)
 	);
+
 	// ??
 	m_window.addMouseClickedFunc(
 		std::bind(&Application::mouseClicked, this, std::placeholders::_1)
 	);
 	//--
+
+	m_window.addMouseReleasedFunc(
+		std::bind(&Application::mouseClicked, this, std::placeholders::_1)
+	);
 
 	m_window.addKeyPressFunc(
 		std::bind(&Application::keyPressed, this, std::placeholders::_1)
@@ -54,6 +62,13 @@ void Application::start(int fps)
 	m_window.close();
 }
 
+void Application::drawGuiPanel()
+{
+	ImGui::Begin("First Panel");
+	ImGui::Text("Hello");
+	ImGui::End();
+}
+
 void Application::createFrame()
 {
 	stageUpdate();
@@ -62,30 +77,28 @@ void Application::createFrame()
 
 void Application::draw()
 {
-	float x = 0.0f;
 	m_window.clearScreen();
 	m_grid.draw(m_window);
-	ImGui::Begin("First Panel");
-	ImGui::Text("Hello");
-	if (ImGui::Button("Click Me")) {
-		///
-	}
-	ImGui::SliderFloat(" : X", &x, -10, 10);
-	ImGui::End();
+	m_stage.draw(m_window);
+
+	drawGuiPanel();
+
 	m_window.showShape();
 }
 
 void Application::stageUpdate()
 {
+	m_stage.update(m_timeOfFrame);
+	m_grid.update(m_timeOfFrame);
 	m_window.update(m_timeOfFrame);
 }
 
 void Application::keyPressed(sf::Keyboard::Key key)
 {
 	//if (key == sf::Keyboard::Left || key == sf::Keyboard::A)
-	//
+
 	//if (key == sf::Keyboard::Right || key == sf::Keyboard::D)
-	//
+
 	//if (key == sf::Keyboard::Up || key == sf::Keyboard::W)
 
 	//if (key == sf::Keyboard::Down || key == sf::Keyboard::S)
@@ -100,5 +113,10 @@ void Application::mouseMoved(sf::Event::MouseMoveEvent e)
 }
 
 void Application::mouseClicked(sf::Event::MouseButtonEvent e)
+{
+	m_stage.setCircleOrigin(sf::Vector2f(e.x,e.y));
+}
+
+void Application::mouseReleased(sf::Event::MouseButtonEvent e)
 {
 }

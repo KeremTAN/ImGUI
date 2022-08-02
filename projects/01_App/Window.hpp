@@ -20,11 +20,16 @@ public:
 	void addKeyReleaseFunc(KeyboardFunction newFunction);
 	void addMouseMoveFunc(MouseMove newFunction);
 	void addMouseClickedFunc(MouseClick newFunction);
+	void addMouseReleasedFunc(MouseClick newFunction);
 	void setTitle(const int& score);
+
 private:
 	KeyboardFunctionList m_keyPressFuncList;
 	KeyboardFunctionList m_keyReleaseFuncList;
-	MouseMoveFuncList m_mouseMoveFuncList;
-	MouseClickFuncList m_mouseClickFuncList;
+
+	MouseMoveFuncList		m_mouseMoveFuncList;
+	MouseClickFuncList		m_mouseClickFuncList;
+	MouseClickFuncList		m_mouseReleasedFuncList;
+
 	sf::RenderWindow window;
 };
