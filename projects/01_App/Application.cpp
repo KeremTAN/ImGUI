@@ -28,7 +28,7 @@ void Application::built(const int& width, const int& height)
 	//--
 
 	m_window.addMouseReleasedFunc(
-		std::bind(&Application::mouseClicked, this, std::placeholders::_1)
+		std::bind(&Application::mouseReleased, this, std::placeholders::_1)
 	);
 
 	m_window.addKeyPressFunc(
@@ -110,6 +110,7 @@ void Application::keyReleased(sf::Keyboard::Key key)
 
 void Application::mouseMoved(sf::Event::MouseMoveEvent e)
 {
+	m_stage.setCircleLastPosition((sf::Vector2f(e.x, e.y)));
 }
 
 void Application::mouseClicked(sf::Event::MouseButtonEvent e)
@@ -119,4 +120,5 @@ void Application::mouseClicked(sf::Event::MouseButtonEvent e)
 
 void Application::mouseReleased(sf::Event::MouseButtonEvent e)
 {
+	m_stage.isCircleFinished(true);
 }

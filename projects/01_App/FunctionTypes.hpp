@@ -14,3 +14,5 @@ typedef std::vector<MouseMove> MouseMoveFuncList;
 typedef std::function<void(sf::Event::MouseButtonEvent)> MouseClick;
 
 typedef std::vector<MouseClick> MouseClickFuncList;
+
+typedef std::vector<MouseClick> MouseReleasedFuncList;

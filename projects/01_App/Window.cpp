@@ -41,6 +41,10 @@ void Window::processEvent() {
 		if (check.type == sf::Event::MouseButtonReleased)
 			for (const auto& mouseFuncs : m_mouseReleasedFuncList)
 				mouseFuncs(check.mouseButton);
+
+		if (check.type == sf::Event::MouseButtonPressed)
+			for (const auto& mouseFuncs : m_mouseClickFuncList)
+				mouseFuncs(check.mouseButton);
 	}
 }
 
