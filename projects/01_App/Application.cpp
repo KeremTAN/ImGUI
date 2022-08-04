@@ -64,9 +64,6 @@ void Application::start(int fps)
 
 void Application::drawGuiPanel()
 {
-	ImGui::Begin("First Panel");
-	ImGui::Text("Hello");
-	ImGui::End();
 }
 
 void Application::createFrame()
