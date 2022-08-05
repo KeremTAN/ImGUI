@@ -15,7 +15,7 @@ void Application::built(const int& width, const int& height)
 	m_window.createWindow(width, height, "SFML");
 	m_stage.start();
 	m_grid.start();
-	m_grid.set(width, 20);
+	m_grid.set(width, 50);
 
 	m_window.addMouseMoveFunc(
 		std::bind(&Application::mouseMoved, this, std::placeholders::_1)

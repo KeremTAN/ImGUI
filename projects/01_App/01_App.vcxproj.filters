@@ -63,6 +63,9 @@
     <ClInclude Include="Stage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Arrow.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -99,6 +102,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Arrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

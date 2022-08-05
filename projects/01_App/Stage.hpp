@@ -1,5 +1,6 @@
 #pragma once
 #include "DrawableShapes.hpp"
+#include "Arrow.hpp"
 
 class Stage :public DrawableShapes {
 
@@ -24,4 +25,6 @@ private:
 	sf::CircleShape		m_circle;
 	sf::CircleShape		m_point;
 	sf::RectangleShape	m_line;
+
+	Arrow				m_arrow;
 };

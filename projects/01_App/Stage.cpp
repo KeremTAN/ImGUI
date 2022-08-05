@@ -14,11 +14,14 @@ void Stage::start()
 	m_circle.setRadius(100.0f);
 	m_circle.setOrigin(sf::Vector2f(100, 100));
 	m_circle.setFillColor(sf::Color::Blue);
+	m_circle.setPointCount(3);
 
 	m_heightOfLine = 4.0f;
 	m_line.setSize(sf::Vector2f(100, m_heightOfLine));
 	m_line.setOrigin(sf::Vector2f(0, m_heightOfLine / 2.0f));
 	m_line.setFillColor(sf::Color::Magenta);
+
+	m_arrow.start();
 }
 
 void Stage::setCircleOrigin(const sf::Vector2f& origin)
@@ -33,6 +36,7 @@ void Stage::setCircleOrigin(const sf::Vector2f& origin)
 	m_firstPosition = origin;
 	m_lastPosition = origin;
 	m_line.setPosition(m_firstPosition);
+	m_arrow.setFirstPosition(m_firstPosition);
 }
 
 void Stage::setCircleLastPosition(const sf::Vector2f& lastPosition)
@@ -46,6 +50,7 @@ void Stage::setCircleLastPosition(const sf::Vector2f& lastPosition)
 	m_circle.setOrigin(sf::Vector2f(radius, radius));
 
 	m_lastPosition = lastPosition;
+	m_arrow.setLastPosition(lastPosition);
 }
 
 void Stage::isCircleFinished(bool isFinish)
@@ -74,6 +79,7 @@ void Stage::drawGuiPanel()
 void Stage::update(const sf::Time& dt)
 {
 	m_vecDiff = m_lastPosition - m_firstPosition;
+
 	float length = Math::length(m_vecDiff);
 	m_line.setSize(sf::Vector2f(length, m_heightOfLine));
 	auto vecX = sf::Vector2f(1.0f, 0.0f);
@@ -81,14 +87,14 @@ void Stage::update(const sf::Time& dt)
 	auto radAngle = acosf(cosq);
 	m_angle = Math::radToDeg(radAngle);
 	m_angle = m_vecDiff.y <= 0.0f ? 360.0f - m_angle : m_angle;
-
 	m_line.setRotation(m_angle);
+	m_arrow.update(dt);
 }
 
 void Stage::draw(Window& window)
 {
 	drawGuiPanel();
-	//window.draw(m_circle);
+	window.draw(m_circle);
 
 	m_point.setPosition(m_firstPosition);
 	window.draw(m_point);
@@ -96,4 +102,5 @@ void Stage::draw(Window& window)
 	window.draw(m_point);
 	window.draw(m_line);
 
+	m_arrow.draw(window);
 }

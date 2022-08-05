@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.hpp" />
+    <ClInclude Include="Arrow.hpp" />
     <ClInclude Include="DrawableShapes.hpp" />
     <ClInclude Include="FunctionTypes.hpp" />
     <ClInclude Include="Grid.hpp" />
@@ -38,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="DrawableShapes.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="imgui\imgui-SFML.cpp" />
